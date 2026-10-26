@@ -1,0 +1,16 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background-primary);
+  color: var(--color-content-primary);
+  font: var(--font-body);
+  font-feature-settings:
+    'lnum' 1,
+    'tnum' 1;
+  -webkit-font-smoothing: antialiased;
+}

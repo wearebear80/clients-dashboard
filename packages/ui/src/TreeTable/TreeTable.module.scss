@@ -1,0 +1,157 @@
+$row-height: 56px;
+$cell-gap: 16px;
+
+.scroller {
+  // Contains absolutely positioned descendants (visually hidden cell labels), which would
+  // otherwise escape the scroll container and widen the page.
+  position: relative;
+  overflow-x: auto;
+  container-type: inline-size;
+}
+
+.table {
+  --name-column-width: #{16px + 264px + $cell-gap * 0.5};
+  --indent: 28px;
+  // Fits "Feb 2024" + cell padding; the table scrolls instead of squeezing columns below it.
+  --data-column-min-width: 72px;
+
+  // Narrow cards (e.g. 375px screens): the table scrolls inside the card with a slimmer,
+  // pinned tree column. A container query, so it follows the card width, not the viewport.
+  @container (max-width: 600px) {
+    --name-column-width: 220px;
+    --indent: 16px;
+  }
+
+  width: 100%;
+  border-collapse: collapse;
+  font: var(--font-body);
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--color-content-primary);
+}
+
+%cell {
+  height: $row-height;
+  padding: 0 $cell-gap * 0.5;
+  background-color: var(--color-background-secondary);
+  font-weight: 400;
+  text-align: right;
+  white-space: nowrap;
+
+  &:last-child {
+    padding-right: 24px;
+  }
+}
+
+%sticky-name {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  width: var(--name-column-width);
+  padding-left: 16px;
+  text-align: left;
+}
+
+.header {
+  @extend %cell;
+  min-width: var(--data-column-min-width);
+  padding-bottom: 16px;
+  vertical-align: bottom;
+  color: var(--color-content-secondary);
+  border-bottom: 1px solid var(--color-outline-solid);
+}
+
+.nameHeader {
+  @extend .header;
+  @extend %sticky-name;
+}
+
+.cell {
+  @extend %cell;
+}
+
+.nameCell {
+  @extend %cell;
+  @extend %sticky-name;
+}
+
+.row {
+  border-bottom: 1px solid var(--color-outline-solid);
+  outline: none;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &[data-has-child-items],
+  &[data-actions],
+  &[data-selection-mode] {
+    cursor: pointer;
+  }
+
+  // The selected row: an accent bar on its name cell.
+  &[data-selected] > :first-child {
+    box-shadow: inset 3px 0 0 var(--color-series-existing);
+  }
+
+  // Cells are opaque (the tree column is sticky), so hover is an overlay on each cell.
+  &[data-hovered] > * {
+    background-image: linear-gradient(
+      var(--color-surface-secondary),
+      var(--color-surface-secondary)
+    );
+  }
+
+  &[data-focus-visible] > * {
+    box-shadow:
+      inset 0 2px 0 var(--color-focus-ring),
+      inset 0 -2px 0 var(--color-focus-ring);
+  }
+
+  &[data-focus-visible] > :first-child {
+    box-shadow:
+      inset 2px 2px 0 var(--color-focus-ring),
+      inset 0 -2px 0 var(--color-focus-ring);
+  }
+
+  &[data-focus-visible] > :last-child {
+    box-shadow:
+      inset -2px 2px 0 var(--color-focus-ring),
+      inset 0 -2px 0 var(--color-focus-ring);
+  }
+}
+
+// The whole cell shows focus, also when it is on a control inside it (e.g. a tooltip trigger).
+.nameCell[data-focus-visible],
+.cell[data-focus-visible],
+.cell:has(:focus-visible) {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: -2px;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding-left: calc(var(--level) * var(--indent));
+
+  > :last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.chevronSpacer {
+  flex: none;
+  width: 16px;
+}
+
+.chevron {
+  display: flex;
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}

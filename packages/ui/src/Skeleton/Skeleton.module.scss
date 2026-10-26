@@ -1,0 +1,16 @@
+.skeleton {
+  border-radius: var(--radius-card);
+  background: var(--color-skeleton);
+}
+
+.animated {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}

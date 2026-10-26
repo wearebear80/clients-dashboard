@@ -1,0 +1,12 @@
+.icon {
+  flex: none;
+  transform: rotate(-90deg);
+
+  &[data-expanded='true'] {
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 150ms ease;
+  }
+}

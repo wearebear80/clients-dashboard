@@ -1,0 +1,27 @@
+{
+  "name": "@app/domain",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./clients": "./src/clients/index.ts",
+    "./clients/requests": "./src/clients/requests.ts",
+    "./clients/queries": "./src/clients/queries.ts",
+    "./clients/fixtures": "./src/clients/fixtures.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@app/lib": "*",
+    "zod": "^4.6.7"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "^5.0.0",
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tanstack/react-query": "^5.104.5",
+    "@types/react": "^19.3.0"
+  }
+}

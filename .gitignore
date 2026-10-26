@@ -1,0 +1,15 @@
+node_modules/
+dist/
+storybook-static/
+coverage/
+*.log
+.DS_Store
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+
+# Local tooling (the project skill is shared)
+.claude/*
+!.claude/skills/

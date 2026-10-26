@@ -1,0 +1,23 @@
+.mismatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-danger);
+  font: inherit;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  cursor: help;
+
+  // The table cell draws the focus ring.
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.tooltipTitle {
+  display: block;
+  font-weight: 600;
+}

@@ -1,0 +1,99 @@
+@use '../styles/mixins';
+
+$min-plot-width: 840px;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  margin: 0;
+  font: var(--font-footnote);
+  color: var(--color-content-secondary);
+}
+
+.scroller {
+  overflow-x: auto;
+}
+
+.plot {
+  min-width: $min-plot-width;
+}
+
+// Recharts 3 renders tick labels in a separate layer, outside the axis' own className,
+// so these are scoped to the chart root instead.
+.root :global(.recharts-cartesian-grid line) {
+  stroke: var(--color-outline-dotted);
+}
+
+.root :global(.recharts-cartesian-axis-tick-value) {
+  font: var(--font-footnote);
+  fill: var(--color-content-secondary);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.tooltip {
+  @include mixins.tooltip-surface;
+  min-width: 160px;
+}
+
+.tooltipTitle {
+  margin: 0 0 4px;
+  font-weight: 600;
+}
+
+.tooltipList {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 16px;
+  margin: 0;
+
+  dt {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  dd {
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+}
+
+.tooltipTotal {
+  margin-top: 2px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+}
+
+.tooltipNote {
+  max-width: 200px;
+  margin-top: 6px;
+
+  &:empty {
+    display: none;
+  }
+}

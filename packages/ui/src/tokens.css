@@ -1,0 +1,38 @@
+/* Self-hosted Inter with the optical-size axis: large sizes get the "Inter Display" cut automatically. */
+@import '@fontsource-variable/inter/opsz.css';
+
+:root {
+  --color-background-primary: #f7f5ed;
+  --color-background-secondary: #ffffff;
+  --color-surface-secondary: rgba(20, 20, 19, 0.04);
+  --color-content-primary: #141413;
+  --color-content-secondary: rgba(20, 20, 19, 0.6);
+  --color-outline-solid: rgba(20, 20, 19, 0.08);
+  --color-outline-dotted: rgba(20, 20, 19, 0.16);
+  /* Not in Figma: keyboard focus ring, max contrast on white and on hover. */
+  --color-focus-ring: var(--color-content-primary);
+  /* Not in Figma: error accent (toast), skeleton fill, floating surfaces. */
+  --color-danger: #b42318;
+  --color-on-danger: #ffffff;
+  --color-danger-on-dark: #ff9e8f;
+  --color-skeleton: rgba(20, 20, 19, 0.06);
+  --shadow-floating: 0 4px 16px rgba(20, 20, 19, 0.12);
+
+  --color-series-existing: #b29df8;
+  --color-series-organic: #f4beb4;
+  --color-series-paid: #a75e6e;
+  /* Not in Figma: the part of a total not assigned to any row, and more series for branches and
+     advisers (the design only has the three channels). */
+  --color-series-unknown: #dcd8cb;
+  --color-series-other: #7fa99b;
+  --color-series-blue: #8fb4e3;
+  --color-series-sand: #e3c27d;
+
+  --font-family-base: 'Inter Variable', system-ui, sans-serif;
+  --font-title: 400 35px / 1.25 var(--font-family-base);
+  --font-body: 400 14px / 20px var(--font-family-base);
+  --font-footnote: 400 12px / 16px var(--font-family-base);
+
+  --radius-card: 8px;
+  --radius-bar: 4px;
+}

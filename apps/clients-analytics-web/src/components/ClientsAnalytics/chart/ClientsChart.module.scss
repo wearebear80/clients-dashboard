@@ -1,0 +1,24 @@
+.chartHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+  margin-bottom: 16px;
+}
+
+.chartTitle {
+  font: var(--font-body);
+  font-weight: 500;
+  color: var(--color-content-primary);
+}
+
+.chartHint {
+  font: var(--font-footnote);
+  color: var(--color-content-secondary);
+}
+
+.mismatch {
+  margin: 0;
+  color: var(--color-danger-on-dark);
+}

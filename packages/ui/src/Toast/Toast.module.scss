@@ -1,0 +1,83 @@
+.viewport {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: min(480px, calc(100% - 32px));
+  transform: translateX(-50%);
+  pointer-events: none; // the empty area must not block the page
+
+  > * {
+    pointer-events: auto;
+  }
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 12px 16px;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-floating);
+  font: var(--font-body);
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: enter 200ms ease-out;
+  }
+}
+
+.info {
+  border: 1px solid var(--color-outline-solid);
+  background: var(--color-background-secondary);
+  color: var(--color-content-primary);
+
+  .description {
+    color: var(--color-content-secondary);
+  }
+}
+
+.error {
+  background: var(--color-danger);
+  color: var(--color-on-danger);
+
+  .description {
+    opacity: 0.85;
+  }
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+}
+
+.title,
+.description {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.close {
+  display: flex;
+  flex: none;
+  padding: 2px;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 1px;
+  }
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
